@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Institute Admission Portal</title>
+    <link rel="stylesheet" href="Logic_Signup.css">
+</head>
+<body class="auth-page">
+<main class="auth-layout">
+    <section class="auth-panel auth-panel-brand" aria-label="Registration benefits">
+        <p class="eyebrow">Institute Admission Portal</p>
+        <h1>Create your account</h1>
+        <p class="lead">
+            Register once to track applications, update your profile details, and return to the admission form whenever you need.
+        </p>
+        <ul class="feature-list">
+            <li>Quick registration in a few steps</li>
+            <li>Access to your application progress</li>
+            <li>Easy switch back to the admission dashboard</li>
+        </ul>
+    </section>
+
+    <section class="auth-panel auth-panel-form" aria-labelledby="signupTitle">
+        <div class="card-header">
+            <p class="section-label">New Account</p>
+            <h2 id="signupTitle">Sign Up</h2>
+            <p class="section-copy">Enter your details below to create an applicant account.</p>
+        </div>
+
+        <form id="signupForm" class="auth-form" action="Logic.html" method="get" novalidate>
+            <div class="form-group">
+                <label for="signup_name">Full Name</label>
+                <input
+                        id="signup_name"
+                        name="name"
+                        type="text"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required>
+            </div>
+
+            <div class="form-group">
+                <label for="signup_email">Email Address</label>
+                <input
+                        id="signup_email"
+                        name="email"
+                        type="email"
+                        placeholder="name@example.com"
+                        autocomplete="email"
+                        required>
+            </div>
+
+            <div class="form-group">
+                <label for="signup_number">Phone Number</label>
+                <input
+                        id="signup_number"
+                        name="number"
+                        type="tel"
+                        placeholder="Enter your phone number"
+                        autocomplete="tel"
+                        required>
+            </div>
+
+            <div class="form-group">
+                <label for="signup_password">Password</label>
+                <input
+                        id="signup_password"
+                        name="password"
+                        type="password"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        required>
+            </div>
+
+            <div class="form-group">
+                <label for="signup_confirm_password">Confirm Password</label>
+                <input
+                        id="signup_confirm_password"
+                        name="confirm_password"
+                        type="password"
+                        placeholder="Confirm your password"
+                        autocomplete="new-password"
+                        required>
+            </div>
+
+            <label class="checkbox">
+                <input type="checkbox" name="terms" required>
+                <span>I agree to the portal terms and admission guidelines.</span>
+            </label>
+
+            <button type="submit" class="primary-button">Create Account</button>
+            <p id="signup_message" class="status-message" aria-live="polite"></p>
+        </form>
+
+        <nav class="auth-links" aria-label="Signup page links">
+            <a href="Logic.html" class="text-link">Already have an account? Login</a>
+            <a href="index.html" class="text-link">Back to admission form</a>
+        </nav>
+    </section>
+</main>
+</body>
+</html>
