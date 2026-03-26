@@ -173,7 +173,7 @@ textarea:focus {
 
 textarea {
     min-height: 160px;
-    resize: vertical;
+    resize: none;
 }
 
 .option-group {
@@ -215,7 +215,7 @@ textarea {
     transition: all 0.2s ease;
 }
 
-.option-pill input:checked + span {
+.option-pill input:checked+span {
     border-color: transparent;
     background: linear-gradient(135deg, var(--accent), #356f73);
     color: #ffffff;
