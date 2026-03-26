@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>New Shop — Owner Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ═══════════════════════════
+     LOGIN VIEW
+═══════════════════════════ -->
+<div id="loginView" class="view show">
+  <div class="login-bg-pattern"></div>
+  <div class="login-glow"></div>
+  <div class="login-wrap">
+    <div class="login-brand">
+      <div class="login-brand-name">NEW SHOP</div>
+      <div class="login-brand-sub">Owner Control Panel</div>
+    </div>
+    <div class="login-card">
+      <div class="login-lock">🔐</div>
+      <div class="login-title">Secure Login</div>
+      <div class="login-hint">Authorised personnel only</div>
+
+      <div class="lf">
+        <label for="lu">Username</label>
+        <div class="lf-input-wrap">
+          <input id="lu" type="text" placeholder="Enter username" autocomplete="username" onkeydown="if(event.key==='Enter')login()"/>
+          <span class="lf-icon">👤</span>
+        </div>
+      </div>
+      <div class="lf">
+        <label for="lp">Password</label>
+        <div class="lf-input-wrap">
+          <input id="lp" type="password" placeholder="Enter password" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()"/>
+          <button class="pw-toggle-btn" onclick="togglePw()" id="pwBtn">👁</button>
+        </div>
+      </div>
+
+      <button class="login-btn" onclick="login()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+        Enter Dashboard
+      </button>
+      <div class="login-err" id="loginErr">❌ Wrong username or password. Try again.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════
+     DASHBOARD VIEW
+═══════════════════════════ -->
+<div id="dashView" class="view" style="flex-direction:column">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-logo">
+      NEW SHOP
+      <span class="topbar-pill">Admin</span>
+    </div>
+    <div class="topbar-sep"></div>
+    <div class="topbar-user">
+      <div class="topbar-avatar">R</div>
+      <div>
+        <div class="topbar-name">Rafee Ahmed</div>
+        <div class="topbar-role">Owner</div>
+      </div>
+    </div>
+    <button class="logout-btn" onclick="logout()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Logout
+    </button>
+  </div>
+
+  <div class="dash-layout">
+
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+      <div class="sidebar-section-label">Main</div>
+      <div class="nav-item active" onclick="switchTab('overview')" id="nav-overview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Overview
+      </div>
+      <div class="sidebar-section-label">Products</div>
+      <div class="nav-item" onclick="switchTab('add')" id="nav-add">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        Add Product
+      </div>
+      <div class="nav-item" onclick="switchTab('list')" id="nav-list">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        All Products
+        <span class="nav-badge" id="navBadge">0</span>
+      </div>
+      <div class="sidebar-section-label" style="margin-top:auto">Account</div>
+      <div class="nav-item" onclick="logout()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Logout
+      </div>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="dash-main">
+
+      <!-- ── OVERVIEW ── -->
+      <div class="tab-panel active" id="tab-overview">
+        <div class="page-hdr">
+          <div class="page-hdr-top">
+            <div class="page-title">Dashboard <span>Overview</span></div>
+          </div>
+          <div class="page-sub">Welcome back, Rafee — here's your shop at a glance.</div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="stats-grid">
+          <div class="stat">
+            <span class="stat-icon">📦</span>
+            <div class="stat-val" id="stTotal">0</div>
+            <div class="stat-lbl">Total Products</div>
+          </div>
+          <div class="stat">
+            <span class="stat-icon">🏷️</span>
+            <div class="stat-val" id="stBadged">0</div>
+            <div class="stat-lbl">Badged Items</div>
+          </div>
+          <div class="stat">
+            <span class="stat-icon">✨</span>
+            <div class="stat-val" id="stNew">0</div>
+            <div class="stat-lbl">New Arrivals</div>
+          </div>
+          <div class="stat">
+            <span class="stat-icon">🔥</span>
+            <div class="stat-val" id="stHot">0</div>
+            <div class="stat-lbl">Hot / Sale</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex-wrap:wrap" id="overviewGrid">
+          <div class="card" style="grid-column:1/-1">
+            <div class="card-header">
+              <div class="card-title">⚡ Quick Actions</div>
+            </div>
+            <div class="quick-actions">
+              <button class="qa-btn qa-primary" onclick="switchTab('add')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Add New Product
+              </button>
+              <button class="qa-btn qa-ghost" onclick="switchTab('list')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                Manage Products
+              </button>
+              <button class="qa-btn qa-ghost" onclick="exportProducts()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Export Data
+              </button>
+            </div>
+          </div>
+          <div class="card" style="grid-column:1/-1">
+            <div class="card-header">
+              <div class="card-title">🕐 Recent Products</div>
+              <button class="qa-btn qa-ghost" style="padding:6px 12px;font-size:.62rem" onclick="switchTab('list')">View All</button>
+            </div>
+            <ul class="mini-list" id="recentList"></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ADD PRODUCT ── -->
+      <div class="tab-panel" id="tab-add">
+        <div class="page-hdr">
+          <div class="page-hdr-top">
+            <div class="page-title">Add <span>New Product</span></div>
+          </div>
+          <div class="page-sub">Fill in the details below to add a product to your shop.</div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="form-grid">
+              <div class="ff">
+                <label for="pName">Product Name *</label>
+                <input id="pName" type="text" placeholder="e.g. Premium Fitness Hoodie"/>
+              </div>
+              <div class="ff">
+                <label for="pPrice">Price *</label>
+                <input id="pPrice" type="text" placeholder="e.g. PKR 2,500"/>
+              </div>
+              <div class="ff">
+                <label for="pPhone">Contact Phone *</label>
+                <input id="pPhone" type="tel" placeholder="+92 300 1234567"/>
+              </div>
+              <div class="ff">
+                <label for="pBadge">Badge Label</label>
+                <select id="pBadge">
+                  <option value="">No Badge</option>
+                  <option value="New">New</option>
+                  <option value="Hot">Hot</option>
+                  <option value="Sale">Sale</option>
+                  <option value="Limited">Limited</option>
+                  <option value="Featured">Featured</option>
+                  <option value="Sold Out">Sold Out</option>
+                </select>
+              </div>
+              <div class="ff ff-full">
+                <label>Product Photos * <span style="color:var(--muted);font-weight:400;letter-spacing:.5px;text-transform:none;font-size:.65rem">(Select multiple)</span></label>
+                <div class="upload-zone" id="uploadZone">
+                  <input type="file" id="pImgFiles" accept="image/*" multiple onchange="handlePhotoUpload(this)"/>
+                  <div class="upload-icon">📸</div>
+                  <div class="upload-label">Tap to select photos</div>
+                  <div class="upload-hint">JPG, PNG, WEBP — select multiple at once</div>
+                </div>
+                <div class="upload-photos-grid" id="photoGrid"></div>
+              </div>
+              <div class="ff ff-full">
+                <label for="pDesc">Short Description</label>
+                <textarea id="pDesc" placeholder="A short description of this product..."></textarea>
+              </div>
+            </div>
+            <div id="addMsg" class="form-msg"></div>
+            <button class="submit-btn" onclick="addProduct()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Product to Shop
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PRODUCT LIST ── -->
+      <div class="tab-panel" id="tab-list">
+        <div class="page-hdr">
+          <div class="page-hdr-top">
+            <div class="page-title">All <span>Products</span></div>
+            <input class="search-bar" type="text" placeholder="🔍 Search products..." oninput="filterTable(this.value)" id="searchInput"/>
+          </div>
+          <div class="page-sub" id="listCount">Loading...</div>
+        </div>
+        <div class="divider"></div>
+        <div class="card">
+          <div class="tbl-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Badge</th>
+                  <th>Phone</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="prodTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div><!-- end dashView -->
+
+<!-- EDIT MODAL -->
+<div class="overlay" id="editOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeEdit()">✕</button>
+    <div class="modal-title">Edit <span>Product</span></div>
+    <input type="hidden" id="eId"/>
+    <div class="form-grid">
+      <div class="ff"><label for="eName">Product Name *</label><input id="eName" type="text"/></div>
+      <div class="ff"><label for="ePrice">Price *</label><input id="ePrice" type="text"/></div>
+      <div class="ff"><label for="ePhone">Phone</label><input id="ePhone" type="tel"/></div>
+      <div class="ff"><label for="eBadge">Badge</label>
+        <select id="eBadge">
+          <option value="">No Badge</option>
+          <option value="New">New</option>
+          <option value="Hot">Hot</option>
+          <option value="Sale">Sale</option>
+          <option value="Limited">Limited</option>
+          <option value="Featured">Featured</option>
+          <option value="Sold Out">Sold Out</option>
+        </select>
+      </div>
+      <div class="ff ff-full"><label for="eImg">Image URL</label>
+        <input id="eImg" type="url" oninput="prevImg('eImg','ePrev')"/>
+        <div class="img-prev-box" id="ePrev"><span>📷 Preview</span></div>
+      </div>
+      <div class="ff ff-full"><label for="eDesc">Description</label><textarea id="eDesc"></textarea></div>
+    </div>
+    <button class="modal-save" onclick="saveEdit()">💾 &nbsp; Save Changes</button>
+  </div>
+</div>
+
+<!-- CONFIRM DELETE -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="confirm-icon">🗑️</div>
+    <div class="confirm-title">Delete Product?</div>
+    <div class="confirm-sub">This will permanently remove the product from your shop. This action cannot be undone.</div>
+    <div class="confirm-actions">
+      <button class="confirm-cancel" onclick="closeConfirm()">Cancel</button>
+      <button class="confirm-del" id="confirmDelBtn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOASTS -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
