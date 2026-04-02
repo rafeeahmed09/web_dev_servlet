@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Admission Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<!--<body class="dashboard-page">-->
+<!--    <header class="hero">-->
+<!--        <div class="hero-copy">-->
+<!--            <p class="eyebrow">Institute Admission Portal</p>-->
+<!--            <h1>Admission Dashboard</h1>-->
+<!--            <p class="lead">-->
+<!--                Complete your admission form, review your details, and submit a polished application from one place.-->
+<!--            </p>-->
+<!--        </div>-->
+        <nav class="hero-nav" aria-label="Authentication navigation">
+            <a id="Login" class="nav-link" href="Logic.html">Login</a>
+            <a id="signup" class="nav-link nav-link-primary" href="signup.html">Sign up</a>
+
+        </nav>
+    </header>
+
+<!--    <main class="dashboard-shell">-->
+<!--        <aside class="dashboard-sidebar">-->
+<!--            <article class="info-card accent-card">-->
+<!--&lt;!&ndash;                <p class="card-label">Application Stage</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <h2>Draft in Progress</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>Fill in the form carefully and keep your academic details accurate before final submission.</p>&ndash;&gt;-->
+<!--            </article>-->
+
+<!--            <article class="info-card">-->
+<!--                <p class="card-label">Checklist</p>-->
+<!--                <ul class="checklist">-->
+<!--                    <li>Personal details completed</li>-->
+<!--                    <li>Subject selected correctly</li>-->
+<!--                    <li>Fee amount reviewed</li>-->
+<!--                    <li>Education background added</li>-->
+<!--                </ul>-->
+<!--            </article>-->
+<!--        </aside>-->
+
+        <section class="form-panel">
+            <form class="admission-form" accept-charset="UTF-8" method="post">
+                <div class="form-header">
+                    <p class="section-label">Candidate Profile</p>
+                    <h2 id="FormTitle">Candidate Information</h2>
+                    <p>Enter the required information to continue your online admission process.</p>
+                </div>
+
+                <div class="form-grid">
+                    <div class="field-group">
+                        <label for="name">Candidate Name</label>
+                        <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            placeholder="Enter your full name"
+                            required>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="Mother">Mother's Name</label>
+                        <input
+                            id="Mother"
+                            name="Mother"
+                            type="text"
+                            placeholder="Enter your mother's name"
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="field-group">
+                        <label for="Subject">Subject</label>
+                        <select id="Subject" name="Subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="CS-01">CS-01</option>
+                            <option value="CS-02">CS-02</option>
+                            <option value="CS-03">CS-03</option>
+                            <option value="CS-04">CS-04</option>
+                        </select>
+                        <span class="error" id="Subject_error"></span>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="fee">Subject Fee</label>
+                        <input
+                            id="fee"
+                            name="fee"
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            placeholder="Enter fee amount"
+                            required>
+                        <span class="error" id="Fee_error"></span>
+                    </div>
+                </div>
+
+                <fieldset class="field-group option-group">
+                    <legend>Registered for a subject earlier</legend>
+                    <div class="option-row">
+                        <label class="option-pill">
+                            <input type="radio" name="registered" value="yes" required>
+                            <span>Yes</span>
+                        </label>
+                        <label class="option-pill">
+                            <input type="radio" name="registered" value="no" required>
+                            <span>No</span>
+                        </label>
+                    </div>
+                    <span class="error" id="registration_error"></span>
+                </fieldset>
+
+                <div class="field-group">
+                    <label for="eduction">Educational Background</label>
+                    <textarea
+                        id="eduction"
+                        name="eduction"
+                        placeholder="Describe your educational background, achievements, and previous qualifications"
+                        required></textarea>
+                    <span class="error" id="eduction_error"></span>
+                </div>
+
+                <button type="submit" class="submit-button">Submit Application</button>
+                <p id="form_message" class="status-message" aria-live="polite"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer class="page-footer">
+        <p>&copy; 2026 Institute Admission Portal</p>
+    </footer>
+</body>
+</html>
